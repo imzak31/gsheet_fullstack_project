@@ -53,5 +53,8 @@ module GoogleSheetManagerApiMain
       ActiveRecord::Reflection.singleton_class.prepend(ActiveStorage::Reflection::ReflectionExtension)
       include ActiveStorage::Attached::Model
     end
+
+    # Serve static files from the /public directory
+    config.public_file_server.enabled = true
   end
 end

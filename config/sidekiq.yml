@@ -9,7 +9,3 @@ production:
   - default
   - import_files
   - low
-
-# Configure Sidekiq to use Redis URL from the environment variable
-:redis:
-  :url: <%= ENV['REDIS_URL'] %>
