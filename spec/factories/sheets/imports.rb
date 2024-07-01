@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :sheets_import, class: 'Sheets::Import' do
     user { nil }
-    status { "MyString" }
+    status { 'MyString' }
   end
 end
