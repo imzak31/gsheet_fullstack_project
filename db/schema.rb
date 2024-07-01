@@ -48,9 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_184510) do
     t.bigint "attachable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable"
-    t.index ["user_id"], name: "index_attachments_on_user_id"
   end
 
   create_table "import_errors", force: :cascade do |t|
@@ -102,7 +100,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_184510) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "attachments", "users"
   add_foreign_key "import_errors", "sheets_imports", column: "import_id"
   add_foreign_key "sheets_imports", "users"
   add_foreign_key "vacation_sheets", "users"
