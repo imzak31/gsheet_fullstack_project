@@ -1,6 +1,7 @@
 require 'roo'
 require 'open-uri'
 
+# services/sheets/sheet_parser_service.rb
 module Sheets
   class SheetParserService
     def initialize(file_url, user)
@@ -39,7 +40,9 @@ module Sheets
         'Aprobado' => :approved,
         'Rechazado' => :rejected
       }
-      states[state]
+      parsed_state = states[state]
+      Rails.logger.info("Parsed state: #{parsed_state} for original state: #{state}")
+      parsed_state
     end
 
     def set_struct(data)

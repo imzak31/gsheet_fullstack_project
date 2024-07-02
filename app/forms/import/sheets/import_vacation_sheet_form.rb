@@ -1,3 +1,4 @@
+# forms/import/sheets/import_vacation_sheet_form.rb
 module Import
   module Sheets
     class ImportVacationSheetForm
@@ -9,6 +10,8 @@ module Import
         @user = attributes.delete(:user)
         @attributes = attributes
         @vacation_sheet = ::Sheets::VacationSheet.new(attributes.merge(user: @user))
+        Rails.logger.info("Initializing VacationSheet with attributes: #{attributes}")
+        Rails.logger.info("VacationSheet state: #{@vacation_sheet.state}")
         super
       end
 

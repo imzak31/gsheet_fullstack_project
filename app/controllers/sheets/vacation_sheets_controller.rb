@@ -10,7 +10,7 @@ class Sheets::VacationSheetsController < ApplicationController
 
   # GET /sheets/vacation_sheets/:id
   def show
-    render json: @vacation_sheet
+    render json: @vacation_sheet, serializer: Sheets::VacationSheetSerializer
   end
 
   # POST /sheets/vacation_sheets
@@ -27,7 +27,7 @@ class Sheets::VacationSheetsController < ApplicationController
   # PATCH/PUT /sheets/vacation_sheets/:id
   def update
     if @vacation_sheet.update(vacation_sheet_params)
-      render json: @vacation_sheet
+      render json: @vacation_sheet, serializer: Sheets::VacationSheetSerializer
     else
       render json: @vacation_sheet.errors, status: :unprocessable_entity
     end
@@ -46,11 +46,13 @@ class Sheets::VacationSheetsController < ApplicationController
   end
 
   def vacation_sheet_params
-    params.require(:vacation_sheet).permit(:external_id, :name, :email, :leader, :from_date, :until_date, :vacations_kind, :reason, :state)
+    params.require(:vacation_sheet).permit(:external_id, :name, :email, :leader, :from_date,
+                                           :until_date, :vacation_kind, :reason, :state, :created_at, :updated_at)
   end
 
   def filter_params
-    params.permit(:name, :email, :leader, :state, :from_date, :until_date, :vacation_kind, :reason, :page)
+    params.permit(:name, :email, :leader, :state, :from_date, :until_date,
+                  :vacation_kind, :reason, :page, :vacation_days_taken)
   end
 
   def pagination_meta(collection)
