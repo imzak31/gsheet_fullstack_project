@@ -93,7 +93,7 @@ Welcome to **Project Name**! This project aims to [brief description of what you
 
 8. Run the Python Script to update the Google Sheet:
     ```bash
-    cd python_gsheet_editor
+    cd python_gsheet_editor/gsheet_editor
     python3 -m venv venv
     source venv/bin/activate
     pip install -r requirements.txt
