@@ -1,4 +1,4 @@
-# Project Name
+# Vacations Sheet Manager (Web/CLI) - Ruby/TS/Python
 
 ## Table of Contents
 
