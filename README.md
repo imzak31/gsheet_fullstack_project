@@ -12,18 +12,17 @@
 
 ## Introduction
 
-Welcome to **Project Name**! This project aims to [brief description of what your project does]. It provides [high-level overview of functionalities].
+Welcome to **Vacations sheets Manager**! This project aims to import excel files containing information of Vacation Sheets, and then present that information in a comprehensive Rails API and observe it on a ReactTS Frontend with material UI.
 
 ## Features
 
-- Feature 1: Description
-- Feature 2: Description
-- Feature 3: Description
-- ...
+- Feature 1: Rails API able to paginate large endpoints and present the information on a comprehensive serializable object.
+- Feature 2: A ReactTS frontend app, able to communicate with Rails API and present the information, filter it and do multiple interactions with it.
+- Feature 3: A Python CLI tool, that authenticates with GCP and can manipulate an specific GSheet object via API.
 
 ## Technologies Used
 
-- **Backend:** Ruby on Rails
+- **Backend:** Ruby on Rails, Sidekiq, Redis
 - **Frontend:** React with TypeScript
 - **Styling:** Tailwind CSS
 - **Database:** PostgreSQL
@@ -34,6 +33,7 @@ Welcome to **Project Name**! This project aims to [brief description of what you
 ### Prerequisites
 
 - Ruby version: 3.2.4
+- Sidekiq version: Latest
 - Node.js version: Latest
 - NPM version: Latest
 - PostgreSQL version: Latest
@@ -84,6 +84,7 @@ Welcome to **Project Name**! This project aims to [brief description of what you
 6. Start the servers:
     ```bash
     rails s -p 8080
+   bundle exec sidekiq ## For the background jobs that handle the File imports
     cd frontend && npm start
    
 7. Visit `http://localhost:3000` to access the React application with the Frontend functionalities.
