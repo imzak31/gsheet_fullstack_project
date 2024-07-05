@@ -10,6 +10,7 @@ gem 'active_storage_validations'
 gem 'acts_as_paranoid'
 gem 'bootsnap', require: false
 gem 'date_validator'
+gem 'derailed_benchmarks', group: :development
 gem 'devise'
 gem 'devise-jwt'
 gem 'dotenv-rails', groups: [:development, :test]
@@ -33,6 +34,7 @@ gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'sidekiq'
+gem 'stackprof', group: :development
 gem 'tzinfo-data', platforms: [:jruby]
 
 group :development, :test do

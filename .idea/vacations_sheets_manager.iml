@@ -48,6 +48,7 @@
     <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="base64 (v0.2.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.20, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="benchmark-ips (v2.13.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bigdecimal (v3.1.8, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bindex (v0.8.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootsnap (v1.18.3, ruby-3.2.4-p170) [gem]" level="application" />
@@ -60,8 +61,10 @@
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.3.4, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date_validator (v0.12.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="dead_end (v4.0.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.9.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="declarative (v0.0.20, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="derailed_benchmarks (v2.1.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.9.4, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise-jwt (v0.11.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.1, ruby-3.2.4-p170) [gem]" level="application" />
@@ -83,7 +86,9 @@
     <orderEntry type="library" scope="PROVIDED" name="faraday (v2.9.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday-net_http (v3.1.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffaker (v2.23.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.17.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="foreman (v0.88.1@3a2627, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="get_process_mem (v0.2.7, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.2.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="google-apis-core (v0.15.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="google-apis-iamcredentials_v1 (v0.21.0, ruby-3.2.4-p170) [gem]" level="application" />
@@ -93,6 +98,7 @@
     <orderEntry type="library" scope="PROVIDED" name="google-cloud-errors (v1.4.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="google-cloud-storage (v1.52.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="googleauth (v1.11.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="heapy (v0.2.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="httpclient (v2.8.3, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.5, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ice_nine (v0.11.2, ruby-3.2.4-p170) [gem]" level="application" />
@@ -112,6 +118,8 @@
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.8.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="marcel (v1.0.4, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="matrix (v0.4.2, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="memory_profiler (v1.0.2, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_histogram (v0.3.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.1.5, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.24.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.7.2, ruby-3.2.4-p170) [gem]" level="application" />
@@ -171,10 +179,12 @@
     <orderEntry type="library" scope="PROVIDED" name="rubocop-rails (v2.25.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-rspec (v3.0.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.13.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-statistics (v4.0.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v2.3.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v4.22.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sidekiq (v7.2.4, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="signet (v0.19.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="stackprof (v0.2.26, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stringio (v3.1.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="strscan (v3.1.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.3.1, ruby-3.2.4-p170) [gem]" level="application" />

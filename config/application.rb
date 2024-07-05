@@ -37,11 +37,6 @@ module GoogleSheetManagerApiMain
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # Add session and flash middleware for Sidekiq Web UI
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: '_google_sheet_manager_api_session'
-    config.middleware.use ActionDispatch::Flash
-
     ActiveSupport.on_load(:active_record) do
       include ActiveStorage::Reflection::ActiveRecordExtensions
       ActiveRecord::Reflection.singleton_class.prepend(ActiveStorage::Reflection::ReflectionExtension)
