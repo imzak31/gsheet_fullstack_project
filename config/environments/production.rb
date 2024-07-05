@@ -83,7 +83,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Active Storage service
-  config.active_storage.service = :local
+  config.active_storage.service = :google
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
