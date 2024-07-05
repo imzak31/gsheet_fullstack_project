@@ -15,7 +15,7 @@ Devise.setup do |config|
   end
 
   config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
+    jwt.secret = '7620a8ecead29a541462cb3e030413dc4a2f3b975acbc20dfc7ad49fac0e6635a0b710df19a64459dfaa125cfba3e3289369fcf0f4859372ee546961e84be4d1'
   end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
