@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.2.4'
+ruby '3.2.2'
 
 gem 'aasm'
 gem 'active_model_serializers'
