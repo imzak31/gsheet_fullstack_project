@@ -33,10 +33,10 @@ gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
 gem 'sidekiq'
-gem 'tzinfo-data', platforms: [:windows, :jruby]
+gem 'tzinfo-data', platforms: [:jruby]
 
 group :development, :test do
-  gem 'debug', platforms: [:mri, :windows]
+  gem 'debug', platforms: [:mri]
   gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'rspec-rails', '~> 6.x'
