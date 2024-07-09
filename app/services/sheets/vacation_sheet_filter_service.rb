@@ -21,12 +21,6 @@ class Sheets::VacationSheetFilterService
 
   def apply_filter(vacation_sheets, key, value)
     case key
-    when :name
-      vacation_sheets.where('name ILIKE ?', "%#{value}%")
-    when :email
-      vacation_sheets.where('email ILIKE ?', "%#{value}%")
-    when :leader
-      vacation_sheets.where('leader ILIKE ?', "%#{value}%")
     when :state
       vacation_sheets.where(state: value)
     when :from_date

@@ -1,16 +1,29 @@
 class Sheets::VacationSheetsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_vacation_sheet, only: [:show, :update, :destroy]
+  before_action :ensure_admin_role, except: [:index, :show]
 
   # GET /sheets/vacation_sheets
   def index
-    @vacation_sheets = Sheets::VacationSheetFilterService.new(filter_params, current_user).call.page(params[:page]).per(10)
+    Rails.logger.info("Current user role: #{current_user.role}")
+    @vacation_sheets = if current_user.role == 'admin'
+      Rails.logger.info("Fetching vacation sheets for admin user")
+      Sheets::VacationSheet.all.page(params[:page]).per(10)
+    else
+      Rails.logger.info("Fetching vacation sheets for non-admin user")
+      current_user.vacation_sheets.page(params[:page]).per(10)
+    end
+    Rails.logger.info("Fetched vacation sheets: #{@vacation_sheets.inspect}")
     render json: @vacation_sheets, meta: pagination_meta(@vacation_sheets), each_serializer: Sheets::VacationSheetSerializer
   end
 
   # GET /sheets/vacation_sheets/:id
   def show
-    render json: @vacation_sheet, serializer: Sheets::VacationSheetSerializer
+    if current_user.role == 'admin' || @vacation_sheet.user_id == current_user.id
+      render json: @vacation_sheet, serializer: Sheets::VacationSheetSerializer
+    else
+      render json: { errors: ['This operation is not permitted for your role. Please contact your admin.'] }, status: :unprocessable_entity
+    end
   end
 
   # POST /sheets/vacation_sheets
@@ -42,17 +55,15 @@ class Sheets::VacationSheetsController < ApplicationController
   private
 
   def set_vacation_sheet
-    @vacation_sheet = current_user.vacation_sheets.find(params[:id])
+    @vacation_sheet = Sheets::VacationSheet.find(params[:id])
   end
 
   def vacation_sheet_params
-    params.require(:vacation_sheet).permit(:external_id, :name, :email, :leader, :from_date,
-                                           :until_date, :vacation_kind, :reason, :state, :created_at, :updated_at)
+    params.require(:vacation_sheet).permit(:from_date, :until_date, :vacation_kind, :reason, :state, :created_at, :updated_at)
   end
 
   def filter_params
-    params.permit(:name, :email, :leader, :state, :from_date, :until_date,
-                  :vacation_kind, :reason, :page, :vacation_days_taken)
+    params.permit(:state, :from_date, :until_date, :vacation_kind, :reason, :page, :vacation_days_taken)
   end
 
   def pagination_meta(collection)

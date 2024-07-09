@@ -2,6 +2,7 @@
 module Sheets
   class ImportsController < ApplicationController
     before_action :authenticate_user!
+    before_action :ensure_admin_role, only: [:index, :show]
 
     def index
       imports = current_user.imports.page(permitted_params[:page]).per(permitted_params[:per_page] || 10)
