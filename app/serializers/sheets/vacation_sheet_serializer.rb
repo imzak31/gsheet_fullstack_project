@@ -7,7 +7,13 @@ class Sheets::VacationSheetSerializer < ActiveModel::Serializer
     object.vacations_taken
   end
 
+  attribute :employee_name, key: :employee
+
   def state
     object.state
+  end
+
+  def employee_name
+    object.user.name
   end
 end

@@ -13,6 +13,7 @@ class Sheets::VacationSheet < ApplicationRecord
 
   # Validations
   validates :from_date, date: { before: :until_date }, presence: true
+  validates :from_date, uniqueness: { scope: %i[user_id] }
   validates :until_date, date: { after: :from_date }, presence: true
 
   def vacations_taken

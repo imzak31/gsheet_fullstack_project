@@ -5,21 +5,17 @@ class Sheets::VacationSheetsController < ApplicationController
 
   # GET /sheets/vacation_sheets
   def index
-    Rails.logger.info("Current user role: #{current_user.role}")
-    @vacation_sheets = if current_user.role == 'admin'
-      Rails.logger.info("Fetching vacation sheets for admin user")
+    @vacation_sheets = if current_user.admin?
       Sheets::VacationSheet.all.page(params[:page]).per(10)
     else
-      Rails.logger.info("Fetching vacation sheets for non-admin user")
       current_user.vacation_sheets.page(params[:page]).per(10)
     end
-    Rails.logger.info("Fetched vacation sheets: #{@vacation_sheets.inspect}")
     render json: @vacation_sheets, meta: pagination_meta(@vacation_sheets), each_serializer: Sheets::VacationSheetSerializer
   end
 
   # GET /sheets/vacation_sheets/:id
   def show
-    if current_user.role == 'admin' || @vacation_sheet.user_id == current_user.id
+    if current_user.admin? || @vacation_sheet.user_id == current_user.id
       render json: @vacation_sheet, serializer: Sheets::VacationSheetSerializer
     else
       render json: { errors: ['This operation is not permitted for your role. Please contact your admin.'] }, status: :unprocessable_entity

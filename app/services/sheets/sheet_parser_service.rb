@@ -15,16 +15,20 @@ module Sheets
       spreadsheet = Roo::Spreadsheet.open(temp_file_path.to_s, extension: File.extname(temp_file_path))
 
       user_data = parse_user_data_by_id(spreadsheet)
-      user_data.each do |email, data|
-        user_struct = UserStruct.new(
-          email: email,
-          name: data[:name],
-          leader: data[:leader],
-          password: data[:password],
-          role: data[:role] || 'employee', # default to 'employee' if role is not provided
-          vacations: data[:vacations]
-        )
-        enqueue_persist_user_job(user_struct)
+      import = Sheets::Import.create!(user: @user, status: 'in_progress')
+
+      user_data.each_slice(10) do |batch|  # Process in batches of 10 users
+        batch.each do |email, data|
+          user_struct = UserStruct.new(
+            email: email,
+            name: data[:name],
+            leader: data[:leader],
+            password: data[:password],
+            role: data[:role] || 'employee',
+            vacations: data[:vacations]
+          )
+          enqueue_persist_user_job(user_struct, import.id)
+        end
       end
 
       FileUtils.rm_f(temp_file_path)
@@ -42,8 +46,8 @@ module Sheets
         user_data[email] ||= {
           name: row['Nombre'],
           leader: row['Lider'],
-          password: 'nala1234',
-          role: row['Rol'] || 'employee', # assume there's a 'Rol' column in the spreadsheet
+          password: 'nala1234'.freeze,
+          role: 'employee'.freeze,
           vacations: []
         }
         user_data[email][:vacations] << parse_vacations_from_user(row)
@@ -68,17 +72,17 @@ module Sheets
         'Aprobado' => 'approved',
         'Rechazado' => 'rejected'
       }
-      states[state]
+      states[state] || state
     end
 
-    def enqueue_persist_user_job(user_struct)
+    def enqueue_persist_user_job(user_struct, import_id)
       user_hash = user_struct.to_h.deep_stringify_keys
       user_hash['vacations'].each do |vacation|
         vacation['from_date'] = vacation['from_date'].to_s
         vacation['until_date'] = vacation['until_date'].to_s
       end
       Rails.logger.info("Enqueuing job for user: #{user_hash.to_json}")
-      Sheets::PersistUserJob.perform_async(user_hash)
+      Sheets::PersistUserJob.perform_async(user_hash, import_id)
     end
   end
 end
