@@ -1,4 +1,3 @@
-# app/services/sheets/vacation_sheet_filter_service.rb
 class Sheets::VacationSheetFilterService
   def initialize(params, user)
     @params = params
@@ -6,7 +5,11 @@ class Sheets::VacationSheetFilterService
   end
 
   def call
-    vacation_sheets = @user.vacation_sheets
+    vacation_sheets = if @user.admin?
+      Sheets::VacationSheet.includes(:user).all
+    else
+      @user.vacation_sheets.includes(:user)
+    end
 
     @params.each do |key, value|
       next if value.blank? || key.to_sym == :page
@@ -31,6 +34,12 @@ class Sheets::VacationSheetFilterService
       vacation_sheets.where(vacation_kind: value)
     when :reason
       vacation_sheets.where('reason ILIKE ?', "%#{value}%")
+    when :employee
+      vacation_sheets.joins(:user).where('users.name ILIKE ?', "%#{value}%")
+    when :employee_email
+      vacation_sheets.joins(:user).where('users.email ILIKE ?', "%#{value}%")
+    when :employee_leader
+      vacation_sheets.joins(:user).where('users.leader ILIKE ?', "%#{value}%")
     else
       raise ArgumentError, "Invalid filter: #{key}"
     end

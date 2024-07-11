@@ -5,11 +5,7 @@ class Sheets::VacationSheetsController < ApplicationController
 
   # GET /sheets/vacation_sheets
   def index
-    @vacation_sheets = if current_user.admin?
-      Sheets::VacationSheet.all.page(params[:page]).per(10)
-    else
-      current_user.vacation_sheets.page(params[:page]).per(10)
-    end
+    @vacation_sheets = Sheets::VacationSheetFilterService.new(filter_params, current_user).call.page(params[:page]).per(10)
     render json: @vacation_sheets, meta: pagination_meta(@vacation_sheets), each_serializer: Sheets::VacationSheetSerializer
   end
 
@@ -24,7 +20,8 @@ class Sheets::VacationSheetsController < ApplicationController
 
   # POST /sheets/vacation_sheets
   def create
-    @vacation_sheet = current_user.vacation_sheets.build(vacation_sheet_params)
+    @vacation_sheet = Sheets::VacationSheet.new(vacation_sheet_params)
+    @vacation_sheet.user_id = params[:user_id]
 
     if @vacation_sheet.save
       render json: @vacation_sheet, status: :created, location: sheets_vacation_sheet_url(@vacation_sheet)
@@ -55,11 +52,11 @@ class Sheets::VacationSheetsController < ApplicationController
   end
 
   def vacation_sheet_params
-    params.require(:vacation_sheet).permit(:from_date, :until_date, :vacation_kind, :reason, :state, :created_at, :updated_at)
+    params.permit(:user_id, :from_date, :until_date, :vacation_kind, :reason, :state, :created_at, :updated_at)
   end
 
   def filter_params
-    params.permit(:state, :from_date, :until_date, :vacation_kind, :reason, :page, :vacation_days_taken)
+    params.permit(:state, :from_date, :until_date, :vacation_kind, :reason, :employee, :employee_email, :employee_leader, :page)
   end
 
   def pagination_meta(collection)

@@ -1,10 +1,11 @@
-// src/utils/endpoints.ts
+// src/endpoints/endpoint.ts
 import {fetchWithAuth} from '../utils/api/fetchWithAuth';
 import {AuthResponse} from '../structs/authResponseStruct';
 import {Credentials} from '../structs/credentialStruct';
 import {ImportFileResponse, sImportFileResponse} from '../structs/importFileStruct';
 import {sVacationSheet, VacationSheet} from "../structs/vacationSheetStruct";
 import {ImportErrorResponse} from "../structs/importErrorStruct";
+import { CurrentUserResponse, CurrentUser, User } from '../structs/currentUserResponseStruct';
 import {array} from 'superstruct';
 import {createQueryParams} from "../utils/api/filters";
 
@@ -17,6 +18,7 @@ export const ENDPOINTS = {
   IMPORT_FILE: `${API_BASE_URL}/sheets/import_files`,
   VACATION_SHEETS: `${API_BASE_URL}/sheets/vacation_sheets`,
   IMPORT_ERRORS: `${API_BASE_URL}/sheets/import_errors`,
+  USERS_LIST: `${API_BASE_URL}/users/current_user`,
 };
 
 interface UserCredentials {
@@ -175,3 +177,18 @@ export const getImportErrors = async (page: number): Promise<ImportErrorResponse
   );
 };
 
+export const getCurrentUserAndUsersList = async (): Promise<User[] | CurrentUser> => {
+  const response = await fetchWithAuth<CurrentUserResponse>(
+      ENDPOINTS.USERS_LIST,
+      {
+        method: 'GET',
+      },
+      CurrentUserResponse
+  );
+
+  if (response.all_users && response.all_users.length > 0) {
+    return response.all_users;
+  }
+
+  return [response.user];
+};

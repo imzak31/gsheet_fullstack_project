@@ -1,15 +1,23 @@
-// src/structs/authResponse.ts
-import { string, type, Struct } from 'superstruct';
-import { User, sUser } from './userStruct';
+import { string, number, type, Struct } from "superstruct";
 
 export interface AuthResponse {
-  token: string;
-  user: User;
+  id: number;
+  name: string;
+  email: string;
+  created_at: string;
+  updated_at: string;
+  leader: string;
+  role: string;
 }
 
 export function sAuthResponse(): Struct<AuthResponse> {
   return type({
-    token: string(),
-    user: sUser(),
+    id: number(),
+    name: string(),
+    email: string(),
+    created_at: string(),
+    updated_at: string(),
+    leader: string(),
+    role: string(),
   });
 }

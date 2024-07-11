@@ -7,7 +7,7 @@ import ListItemLink from './ListItemLink';
 import { routePaths } from '../routes/routePaths';
 
 const SidebarContainer = styled(Box)(({ theme }) => ({
-  width: '20%',
+  width: '10%',
   height: '100vh',
   backgroundColor: '#f4f4f4',
   boxShadow: '2px 0 5px rgba(0,0,0,0.1)',

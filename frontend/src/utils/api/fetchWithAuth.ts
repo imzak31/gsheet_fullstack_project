@@ -1,10 +1,10 @@
 import { Struct, assert } from 'superstruct';
 
 export const fetchWithAuth = async <T>(
-  endpoint: string,
-  options: RequestInit = {},
-  validator?: Struct<T>, // Optional validator
-  handleSessionExpired?: () => void
+    endpoint: string,
+    options: RequestInit = {},
+    validator?: Struct<T>, // Optional validator
+    handleSessionExpired?: () => void
 ): Promise<T> => {
   const authToken = localStorage.getItem('authToken');
   let headers: HeadersInit = {};
@@ -44,4 +44,3 @@ export const fetchWithAuth = async <T>(
 
   return data;
 };
-

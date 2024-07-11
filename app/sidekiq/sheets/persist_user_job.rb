@@ -62,7 +62,7 @@ module Sheets
 
     def save_import_error(import_id, user_data, error_message)
       Sheets::ImportError.create!(
-        import_id: import_id,
+        import_id:,
         data: user_data.to_json,
         error_messages: error_message
       )
@@ -70,7 +70,7 @@ module Sheets
 
     def update_import_status(import_id, status)
       import = Sheets::Import.find(import_id)
-      import.update!(status: status)
+      import.update!(status:)
     end
   end
 end

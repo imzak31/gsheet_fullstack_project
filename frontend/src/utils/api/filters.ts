@@ -1,8 +1,8 @@
 // src/utils/api/filters.ts
 interface FilterParams {
-  name?: string;
-  email?: string;
-  leader?: string;
+  employee?: string;
+  employee_email?: string;
+  employee_leader?: string;
   state?: string;
   from_date?: string;
   until_date?: string;

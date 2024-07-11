@@ -10,6 +10,6 @@ class UserStruct < Dry::Struct
   attribute :name, Types::String
   attribute :leader, Types::String
   attribute :password, Types::String
-  attribute :role, Types::String.default('employee')
+  attribute :role, Types::String.default('employee'.freeze)
   attribute :vacations, Types::Array.of(Sheets::VacationSheetStruct)
 end

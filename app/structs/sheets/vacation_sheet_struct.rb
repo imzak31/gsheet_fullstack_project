@@ -11,6 +11,6 @@ module Sheets
     attribute :until_date, Types::String
     attribute :vacation_kind, Types::String.default('Vacaciones'.freeze)
     attribute :reason, Types::String.optional
-    attribute :state, Types::String.default('pending')
+    attribute :state, Types::String.default('pending'.freeze)
   end
 end

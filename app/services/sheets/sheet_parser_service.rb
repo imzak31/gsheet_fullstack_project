@@ -17,10 +17,10 @@ module Sheets
       user_data = parse_user_data_by_id(spreadsheet)
       import = Sheets::Import.create!(user: @user, status: 'in_progress')
 
-      user_data.each_slice(10) do |batch|  # Process in batches of 10 users
+      user_data.each_slice(10) do |batch| # Process in batches of 10 users
         batch.each do |email, data|
           user_struct = UserStruct.new(
-            email: email,
+            email:,
             name: data[:name],
             leader: data[:leader],
             password: data[:password],
