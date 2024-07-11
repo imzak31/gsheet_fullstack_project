@@ -54,6 +54,7 @@ Welcome to **Vacations sheets Manager**! This project aims to import excel files
    ```bash
    rails db:create
    rails db:migrate
+   rails db:seed ## This will create an Admin User by default and output the credentials
 
 4. Setup an .env file in the root directory and add the following content:
     ```bash
