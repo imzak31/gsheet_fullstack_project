@@ -32,5 +32,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 # Ignore the GCS keyfile
-/config/gcp_secrets/keyfile.json
-python_gsheet_editor/gsheet_editor/credentials/keyfile.json
+/config/gcp_secrets/creds.json
+python_gsheet_editor/gsheet_editor/credentials/creds.json
